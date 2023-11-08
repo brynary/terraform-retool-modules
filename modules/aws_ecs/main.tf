@@ -407,18 +407,18 @@ resource "aws_service_discovery_service" "retool_workflow_backend_service" {
   }
 }
 
-module "temporal" {
-  count  = var.workflows_enabled && !var.use_exising_temporal_cluster ? 1 : 0
-  source = "./temporal"
+# module "temporal" {
+#   count  = var.workflows_enabled && !var.use_exising_temporal_cluster ? 1 : 0
+#   source = "./temporal"
 
-  deployment_name                = "${var.deployment_name}-temporal"
-  vpc_id                         = var.vpc_id
-  subnet_ids                     = var.subnet_ids
-  private_dns_namespace_id       = aws_service_discovery_private_dns_namespace.retoolsvc[0].id
-  aws_cloudwatch_log_group_id    = aws_cloudwatch_log_group.this.id
-  aws_region                     = var.aws_region
-  aws_ecs_cluster_id             = aws_ecs_cluster.this.id
-  launch_type                    = var.launch_type
-  container_sg_id                = aws_security_group.containers.id
-  aws_ecs_capacity_provider_name = var.launch_type == "EC2" ? aws_ecs_capacity_provider.this[0].name : null
-}
+#   deployment_name                = "${var.deployment_name}-temporal"
+#   vpc_id                         = var.vpc_id
+#   subnet_ids                     = var.subnet_ids
+#   private_dns_namespace_id       = aws_service_discovery_private_dns_namespace.retoolsvc[0].id
+#   aws_cloudwatch_log_group_id    = aws_cloudwatch_log_group.this.id
+#   aws_region                     = var.aws_region
+#   aws_ecs_cluster_id             = aws_ecs_cluster.this.id
+#   launch_type                    = var.launch_type
+#   container_sg_id                = aws_security_group.containers.id
+#   aws_ecs_capacity_provider_name = var.launch_type == "EC2" ? aws_ecs_capacity_provider.this[0].name : null
+# }
