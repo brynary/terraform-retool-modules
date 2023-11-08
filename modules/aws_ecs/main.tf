@@ -59,7 +59,7 @@ resource "aws_ecs_service" "retool" {
   capacity_provider_strategy {
     base              = 1
     weight            = 100
-    capacity_provider = var.launch_type == "FARGATE" ? "FARGATE" : aws_ecs_capacity_provider.this[0].name
+    capacity_provider = "FARGATE" # var.launch_type == "FARGATE" ? "FARGATE" : aws_ecs_capacity_provider.this[0].name
   }
 
   dynamic "network_configuration" {
@@ -85,7 +85,7 @@ resource "aws_ecs_service" "jobs_runner" {
   capacity_provider_strategy {
     base              = 1
     weight            = 100
-    capacity_provider = var.launch_type == "FARGATE" ? "FARGATE" : aws_ecs_capacity_provider.this[0].name
+    capacity_provider = "FARGATE" # var.launch_type == "FARGATE" ? "FARGATE" : aws_ecs_capacity_provider.this[0].name
   }
 
   dynamic "network_configuration" {
@@ -113,7 +113,7 @@ resource "aws_ecs_service" "workflows_backend" {
   capacity_provider_strategy {
     base              = 1
     weight            = 100
-    capacity_provider = var.launch_type == "FARGATE" ? "FARGATE" : aws_ecs_capacity_provider.this[0].name
+    capacity_provider = "FARGATE" #var.launch_type == "FARGATE" ? "FARGATE" : aws_ecs_capacity_provider.this[0].name
   }
 
   service_registries {
@@ -144,7 +144,7 @@ resource "aws_ecs_service" "workflows_worker" {
   capacity_provider_strategy {
     base              = 1
     weight            = 100
-    capacity_provider = var.launch_type == "FARGATE" ? "FARGATE" : aws_ecs_capacity_provider.this[0].name
+    capacity_provider = "FARGATE" #var.launch_type == "FARGATE" ? "FARGATE" : aws_ecs_capacity_provider.this[0].name
   }
   dynamic "network_configuration" {
 
